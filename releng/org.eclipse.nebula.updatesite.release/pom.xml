@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Copyright (C) 2020, EclipseSource.
+
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+ * Johannes Faltermeier (EclipseSource)
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>org.eclipse.nebula.updatesite.release</artifactId>
+	<groupId>org.eclipse.nebula</groupId>
+	<packaging>eclipse-repository</packaging>
+
+	<name>Eclipse Nebula Plugin Release Update Site</name>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<properties>
+		<tycho-version>1.5.0</tycho-version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>nebula</id>
+			<layout>p2</layout>
+			<url>${nebula.p2}</url>
+		</repository>
+		<repository>
+			<id>projects</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/releases/oxygen/</url>
+		</repository>
+		<repository>
+			<id>platform</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/eclipse/updates/4.7/</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-repository-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<extraArtifactRepositoryProperties>
+						<p2.mirrorsURL>${mirror.url}</p2.mirrorsURL>
+					</extraArtifactRepositoryProperties>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
